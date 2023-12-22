@@ -18,11 +18,12 @@ block content
   if messages.length > 0 
     dl 
       for message in messages 
-        if currentUser && currentUser.isMember
-          dt #[strong #{message.decodedTitle}]  #[i #{message.author.username} (#{message.formattedTimestamp})]
-
-        else 
-          dt #[strong #{message.decodedTitle}] 
+        dt #[strong #{message.decodedTitle}] 
+          if currentUser && (currentUser.isAdmin || currentUser.isMember)
+            |  #[i #{message.author.username} (#{message.formattedTimestamp})]
+          if currentUser && currentUser.isAdmin
+            |  
+            a(href=`/delete-message/${message._id}`) Delete
 
         dd= message.decodedMessage 
 
