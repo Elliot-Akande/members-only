@@ -48,17 +48,24 @@ exports.signupPOST = [
       }
       return true;
     }),
-
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
     const { firstName, lastName, username, password, confirmPassword } =
       req.body;
+    const isAdmin = "isAdmin" in req.body;
 
     if (!errors.isEmpty()) {
       res.render("signup", {
         title: "Sign Up",
         errors: errors.array(),
-        user: { firstName, lastName, username, password, confirmPassword },
+        user: {
+          firstName,
+          lastName,
+          username,
+          password,
+          confirmPassword,
+          isAdmin,
+        },
       });
       return;
     }
@@ -69,6 +76,7 @@ exports.signupPOST = [
         firstName,
         lastName,
         username,
+        isAdmin,
         password: hashedPassword,
       });
     });
