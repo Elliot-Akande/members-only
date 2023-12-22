@@ -19,12 +19,12 @@ block content
     dl 
       for message in messages 
         if currentUser && currentUser.isMember
-          dt #[strong #{message.title}]  #[i #{message.author.username} (#{message.formattedTimestamp})]
+          dt #[strong #{message.decodedTitle}]  #[i #{message.author.username} (#{message.formattedTimestamp})]
 
         else 
-          dt #[strong #{message.title}] 
+          dt #[strong #{message.decodedTitle}] 
 
-        dd= message.message 
+        dd= message.decodedMessage 
 
   else  
     p There are no messages.      
