@@ -2,4 +2,39 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+
+  if currentUser 
+    p Welcome back, #{currentUser.firstName}!
+
+    p
+      if currentUser.isMember
+        a(href='/create-message') Create new message
+
+      else 
+        a(href='/join-the-club') Become a member
+  
+  h2 All Messages: 
+
+  if messages.length > 0 
+    dl 
+      for message in messages 
+        if currentUser && currentUser.isMember
+          dt #[strong #{message.title}]  #[i #{message.author.username} (#{message.formattedTimestamp})]
+
+        else 
+          dt #[strong #{message.title}] 
+
+        dd= message.message 
+
+  else  
+    p There are no messages.      
+
+
+  if currentUser
+    p
+      a(href="/logout") Logout 
+  else
+    p
+      a(href="/login") Login 
+    p
+      a(href="/signup") Sign Up   
