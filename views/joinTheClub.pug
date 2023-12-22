@@ -1,0 +1,20 @@
+extends layout 
+
+block content 
+  h1= title 
+
+  if currentUser.isMember 
+    p You are a member!
+    p 
+      a(href="/") Home 
+
+  else 
+    p If you want to become a member you must enter the super-secret passcode! 
+
+    form(action="", method="post") 
+      label(for='passcode') Passcode: 
+      input#passcode(type='text' placeholder='Passcode' name='passcode' required='true')
+      button(type="submit") Submit
+
+    if error 
+      p!= error
