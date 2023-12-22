@@ -6,17 +6,25 @@ const indexController = require("../controllers/indexController");
 // GET home page.
 router.get("/", indexController.homeGET);
 
+// GET request for becoming a member.
+router.get("/join-the-club", indexController.joinTheClubGET);
+
+// POST request for becoming a member.
+router.post("/join-the-club", indexController.joinTheClubPOST);
+
+/// MESSAGES ///
+
 // GET request for creating a message.
 router.get("/create-message", indexController.createMessageGET);
 
 // POST request for creating a message.
 router.post("/create-message", indexController.createMessagePOST);
 
-// GET request for becoming a member.
-router.get("/join-the-club", indexController.joinTheClubGET);
+// GET request for deleting a message.
+router.get("/delete-message/:id", indexController.deleteMessageGET);
 
-// POST request for becoming a member.
-router.post("/join-the-club", indexController.joinTheClubPOST);
+// POST request for deleting a message.
+router.post("/delete-message/:id", indexController.deleteMessagePOST);
 
 /// AUTHENTICATION ///
 

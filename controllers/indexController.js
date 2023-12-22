@@ -74,3 +74,21 @@ exports.createMessagePOST = [
     res.redirect("/");
   }),
 ];
+
+// Display Message delete page on GET.
+exports.deleteMessageGET = asyncHandler(async (req, res, next) => {
+  if (!req.user.isAdmin) res.redirect("/");
+
+  const message = await Message.findById(req.params.id).exec();
+  if (message === null) res.redirect("/");
+
+  res.render("deleteMessage", { title: "Delete Message", message });
+});
+
+// Handle Message delete on POST.
+exports.deleteMessagePOST = asyncHandler(async (req, res, next) => {
+  if (!req.user.isAdmin) res.redirect("/");
+
+  await Message.findByIdAndDelete(req.params.id);
+  res.redirect("/");
+});
