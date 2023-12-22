@@ -73,7 +73,7 @@ exports.signupPOST = [
       });
     });
 
-    res.redirect("/");
+    res.redirect("/login");
   }),
 ];
 
