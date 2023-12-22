@@ -6,6 +6,12 @@ const indexController = require("../controllers/indexController");
 // GET home page.
 router.get("/", indexController.homeGET);
 
+// GET request for creating a message.
+router.get("/create-message", indexController.createMessageGET);
+
+// POST request for creating a message.
+router.post("/create-message", indexController.createMessagePOST);
+
 // GET request for becoming a member.
 router.get("/join-the-club", indexController.joinTheClubGET);
 
