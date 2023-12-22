@@ -1,0 +1,9 @@
+extends layout 
+
+block content 
+  h1 #{title}: #{message.decodedTitle}
+
+  p Are you sure you want to delete this Message?
+
+  form(action="", method="post") 
+    button(type="submit") Delete
